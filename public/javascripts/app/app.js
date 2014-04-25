@@ -1,6 +1,6 @@
-var app = angular.module('stayClassyPc', []);
+angular.module('scProto', []);
 
-app.constant('scAuth', {
+angular.module('scProto').constant('scAuth', {
   baseUrl: 'http://www.stayclassy.org/api1/',
   token: 'HOrZfn1emVn9bWpyvojz',
   cid: 13512
@@ -12,7 +12,7 @@ app.constant('scAuth', {
  * Value service to hold our query options, pulls straight fundraiser feed by default.
  * Extend this to add option variables.
  */
-app.value('scOptions', {
+angular.module('scProto').value('scOptions', {
   queryType: 'fundraisers'
 });
 
@@ -21,7 +21,7 @@ app.value('scOptions', {
  *
  * Quick filter to calculate percentage of donation.
  */
-app.filter('percent',function() {
+angular.module('scProto').filter('percent',function() {
   return function(goal, contributed) {
     if(goal === 0) {
       return '';
@@ -37,7 +37,7 @@ app.filter('percent',function() {
  *
  * A factory to compile our options service and run out http request Stay Classy.
  */
-app.factory('scFetch', function($http, scAuth, scOptions) {
+angular.module('scProto').factory('scFetch', function($http, scAuth, scOptions) {
   return {
     scGet: function() {
       var scHttpRequest = scAuth.baseUrl + scOptions.queryType + '?cid=' + scAuth.cid + '&token=' + scAuth.token;
@@ -55,7 +55,7 @@ app.factory('scFetch', function($http, scAuth, scOptions) {
  *
  * Simple controller to inject our returned fundraisers array to scope.
  */
-app.controller('ScListingController', ['$scope', 'scFetch', function($scope, scFetch){
+angular.module('scProto').controller('ScListingController', ['$scope', 'scFetch', function($scope, scFetch){
   scFetch.scGet().then(function(scData){
     $scope.fundraisers = scData.fundraisers;
   });
