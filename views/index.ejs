@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html ng-app="stayClassyPc">
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/components/angular/angular.min.js"></script>
+    <script src="/javascripts/app/app.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div ng-controller="StayClassyListing">
+      <div style="float: left; padding-right: 10px;">
+        <img src="{{fundraiser.memberImg}}" /><br>
+        <a href="{{fundraiser.donationUrl}}">DONATE!</a>
+      </div>
+      <a href="{{fundraiser.url}}" alt="Go to Fundraiser">
+        <h2>{{fundraiser.projectName}}</h2>
+        <h3>{{fundraiser.eventName}}</h3>
+      </a>
+      <span>Created By: <strong>{{fundraiser.memberName}}</strong></span>
+    </div>
+  </body>
+</html>
