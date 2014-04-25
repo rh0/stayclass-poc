@@ -13,23 +13,10 @@ angular.module('scProto').constant('scAuth', {
  * Extend this to add option variables.
  */
 angular.module('scProto').value('scOptions', {
-  queryType: 'fundraisers'
-});
-
-/**
- * percent
- *
- * Quick filter to calculate percentage of donation.
- */
-angular.module('scProto').filter('percent',function() {
-  return function(goal, contributed) {
-    if(goal === 0) {
-      return '';
-    }
-    var percentage = (contributed/goal)*100;
-    percentage.toFixed();
-    return percentage + '%';
-  };
+  queryType: 'fundraisers',
+  options: {
+    limit: 10
+  }
 });
 
 /**
@@ -51,6 +38,22 @@ angular.module('scProto').factory('scFetch', function($http, scAuth, scOptions) 
 });
 
 /**
+ * percent
+ *
+ * Quick filter to calculate percentage of donation.
+ */
+angular.module('scProto').filter('percent',function() {
+  return function(goal, contributed) {
+    if(goal === 0) {
+      return '';
+    }
+    var percentage = (contributed/goal)*100;
+    percentage.toFixed();
+    return percentage + '%';
+  };
+});
+
+/**
  * ScListingController
  *
  * Simple controller to inject our returned fundraisers array to scope.
@@ -59,5 +62,4 @@ angular.module('scProto').controller('ScListingController', ['$scope', 'scFetch'
   scFetch.scGet().then(function(scData){
     $scope.fundraisers = scData.fundraisers;
   });
-  console.log($scope);
 }]);
