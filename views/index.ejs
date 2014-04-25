@@ -7,18 +7,24 @@
     <script src="/javascripts/app/app.js"></script>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <div ng-controller="StayClassyListing">
-      <div style="float: left; padding-right: 10px;">
-        <img src="{{fundraiser.memberImg}}" /><br>
-        <a href="{{fundraiser.donationUrl}}">DONATE!</a>
+    <h1>Welcome to <%= title %></h1>
+    <h2>Fundraiser listing:</h2>
+    <div ng-controller="ScListingController" ng-cloak>
+
+      <div class="fundraiser-item" ng-repeat="fundraiser in fundraisers">
+        <div style="float: left; padding-right: 10px;">
+          <img src="{{fundraiser.member_image_large}}" />
+        </div>
+        <a href="{{fundraiser.fundraiser_url}}" title="Go to Fundraiser">
+          <h2>{{fundraiser.page_title}}</h2>
+          <h3>{{fundraiser.event_name}}</h3>
+        </a>
+        <p>{{fundraiser.total_raised | currency}} raised {{fundraiser.goal | percent:fundraiser.total_raised}}</p>
+        <span>Created By: <strong>{{fundraiser.first_name}} {{fundraiser.last_name}}</strong></span>
+        <br>
+        <a href="{{fundraiser.donation_url}}">DONATE!</a>
       </div>
-      <a href="{{fundraiser.url}}" alt="Go to Fundraiser">
-        <h2>{{fundraiser.projectName}}</h2>
-        <h3>{{fundraiser.eventName}}</h3>
-      </a>
-      <span>Created By: <strong>{{fundraiser.memberName}}</strong></span>
+
     </div>
   </body>
 </html>
