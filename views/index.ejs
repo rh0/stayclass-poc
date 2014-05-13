@@ -19,7 +19,7 @@
           <h2>{{fundraiser.page_title}}</h2>
           <h3>{{fundraiser.event_name}}</h3>
         </a>
-        <p>{{fundraiser.total_raised | currency}} raised {{fundraiser.goal | percent:fundraiser.total_raised}}</p>
+        <p>{{fundraiser.total_raised | currency}} raised {{fundraiser.goal | percent:fundraiser.total_raised}} (of ${{fundraiser.goal}})</p>
         <span>Created By: <strong>{{fundraiser.first_name}} {{fundraiser.last_name}}</strong></span>
         <br>
         <a href="{{fundraiser.donation_url}}">DONATE!</a>

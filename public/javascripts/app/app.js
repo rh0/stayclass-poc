@@ -48,8 +48,7 @@ angular.module('scProto').filter('percent',function() {
       return '';
     }
     var percentage = (contributed/goal)*100;
-    percentage.toFixed();
-    return percentage + '%';
+    return percentage.toFixed() + '%';
   };
 });
 
